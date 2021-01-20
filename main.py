@@ -1,4 +1,5 @@
 from core.utils.utils import *
+from test import test
 
 from train import train
 
