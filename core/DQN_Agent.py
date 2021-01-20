@@ -32,7 +32,7 @@ class DQN_Agent():
     def get_agent_name(self):
         return self.name
 
-    # chooses whether to explore or exploit based on the epsilon value
+    # explore or exploit based on eps
     def get_action(self, state, epsilon):
         if not isinstance(state, torch.Tensor):
             state = torch.tensor([state])
@@ -82,6 +82,7 @@ class DQN_Agent():
         self.optimizer.step()
         return loss
 
+    # used in case of training interruption or test
     def load_parameters(self, file):
         f = torch.load(file)
         self.policy_net.load_state_dict(f['policy_net_state_dict'])
@@ -90,6 +91,7 @@ class DQN_Agent():
         self.policy_net.train()
         self.target_net.eval()
 
+        # just for printing them out if interrupted
         episode = f['episode']
         loss = f['loss']
 
