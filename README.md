@@ -33,4 +33,4 @@ In particular, the user will be allowed to:
 1. Train the model of a specific Agent.
 2. Test the model of a specific Agent, starting from the best parameters found during training.
 3. Plot the training results of a specific Agent, starting from `.npy` arrays saved in training phase.
-4. Plot the comparison between the three techniques used in training phase, starting from `.npy` arrays saved in training phase.
+4. Plot the comparison between the three Agents, starting from `.npy` arrays saved in training phase.
