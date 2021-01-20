@@ -1,0 +1,74 @@
+appnope==0.1.2
+argon2-cffi==20.1.0
+async-generator==1.10
+attrs==20.3.0
+backcall==0.2.0
+bleach==3.2.1
+certifi==2020.12.5
+cffi==1.14.4
+cloudpickle==1.6.0
+cycler==0.10.0
+decorator==4.4.2
+defusedxml==0.6.0
+entrypoints==0.3
+future==0.18.2
+gym==0.17.3
+imageio @ file:///tmp/build/80754af9/imageio_1594161405741/work
+ipykernel==5.4.2
+ipython==7.19.0
+ipython-genutils==0.2.0
+ipywidgets==7.5.1
+jedi==0.17.2
+Jinja2==2.11.2
+jsonschema==3.2.0
+jupyter==1.0.0
+jupyter-client==6.1.7
+jupyter-console==6.2.0
+jupyter-core==4.7.0
+jupyterlab-pygments==0.1.2
+kiwisolver @ file:///opt/concourse/worker/volumes/live/b8936fa6-0e4b-47e7-4fb4-e02dbd4505ee/volume/kiwisolver_1604014598721/work
+MarkupSafe==1.1.1
+matplotlib @ file:///opt/concourse/worker/volumes/live/f7797860-f8aa-410c-4a56-72315954816b/volume/matplotlib-base_1603378002957/work
+mistune==0.8.4
+mkl-fft==1.2.0
+mkl-random==1.1.1
+mkl-service==2.3.0
+nbclient==0.5.1
+nbconvert==6.0.7
+nbformat==5.0.8
+nest-asyncio==1.4.3
+notebook==6.1.5
+numpy==1.19.4
+olefile==0.46
+packaging==20.8
+pandocfilters==1.4.3
+parso==0.7.1
+pexpect==4.8.0
+pickleshare==0.7.5
+Pillow @ file:///opt/concourse/worker/volumes/live/991b9a87-3372-4acd-45f9-eaa52701f03c/volume/pillow_1603822262543/work
+prometheus-client==0.9.0
+prompt-toolkit==3.0.8
+ptyprocess==0.6.0
+pycparser==2.20
+pyglet==1.5.0
+Pygments==2.7.3
+pyparsing==2.4.7
+pyrsistent==0.17.3
+python-dateutil==2.8.1
+pyzmq==20.0.0
+qtconsole==5.0.1
+QtPy==1.9.0
+scipy==1.5.4
+Send2Trash==1.5.0
+six @ file:///opt/concourse/worker/volumes/live/5b31cb27-1e37-4ca5-6e9f-86246eb206d2/volume/six_1605205320872/work
+terminado==0.9.1
+testpath==0.4.4
+torch==1.7.1
+torchaudio==0.7.0a0+a853dff
+torchvision==0.8.2
+tornado @ file:///opt/concourse/worker/volumes/live/05341796-4198-4ded-4a9a-332fde3cdfd1/volume/tornado_1606942323372/work
+traitlets==5.0.5
+typing-extensions @ file:///tmp/build/80754af9/typing_extensions_1598376058250/work
+wcwidth==0.2.5
+webencodings==0.5.1
+widgetsnbextension==3.5.1

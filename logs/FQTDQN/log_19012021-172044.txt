@@ -1,0 +1,50 @@
+Episode: 500 ->	 Reward: -123.0 - AvgLast100Reward: -140.2 - Duration: 124 timesteps.
+		 Epsilon: 0.01 - Loss: 1.4942783117294312
+		Goals 175%
+----------------------------
+
+Episode: 1000 ->	 Reward: -138.0 - AvgLast100Reward: -136.0 - Duration: 139 timesteps.
+		 Epsilon: 0.01 - Loss: 0.5356668829917908
+		Goals 472%
+----------------------------
+
+Episode: 1500 ->	 Reward: -158.0 - AvgLast100Reward: -134.92 - Duration: 159 timesteps.
+		 Epsilon: 0.01 - Loss: 0.8429873585700989
+		Goals 491%
+----------------------------
+
+Episode: 2000 ->	 Reward: -154.0 - AvgLast100Reward: -143.78 - Duration: 155 timesteps.
+		 Epsilon: 0.01 - Loss: 2.4209227561950684
+		Goals 485%
+----------------------------
+
+Episode: 2500 ->	 Reward: -119.0 - AvgLast100Reward: -132.19 - Duration: 120 timesteps.
+		 Epsilon: 0.01 - Loss: 1.812072515487671
+		Goals 487%
+----------------------------
+
+Episode: 3000 ->	 Reward: -177.0 - AvgLast100Reward: -133.88 - Duration: 178 timesteps.
+		 Epsilon: 0.01 - Loss: 2.1146490573883057
+		Goals 489%
+----------------------------
+
+Episode: 3500 ->	 Reward: -120.0 - AvgLast100Reward: -116.7 - Duration: 121 timesteps.
+		 Epsilon: 0.01 - Loss: 2.019035816192627
+		Goals 468%
+----------------------------
+
+Episode: 4000 ->	 Reward: -123.0 - AvgLast100Reward: -130.19 - Duration: 124 timesteps.
+		 Epsilon: 0.01 - Loss: 1.9876971244812012
+		Goals 486%
+----------------------------
+
+Episode: 4500 ->	 Reward: -122.0 - AvgLast100Reward: -120.9 - Duration: 123 timesteps.
+		 Epsilon: 0.01 - Loss: 1.0087426900863647
+		Goals 490%
+----------------------------
+
+Episode: 5000 ->	 Reward: -127.0 - AvgLast100Reward: -128.02 - Duration: 128 timesteps.
+		 Epsilon: 0.01 - Loss: 2.1272716522216797
+		Goals 498%
+----------------------------
+
