@@ -4,9 +4,8 @@ import torch.optim as optim
 import torch.nn.functional as F
 import numpy as np
 
-from core.model import ReplayMemory, DQN, EpsGreedyStrategy
+from core.model import ReplayMemory, DQN
 from core.utils.utils import extract_tensors
-
 
 class DQN_Agent():
     def __init__(self, num_actions, num_states, \
@@ -62,9 +61,9 @@ class DQN_Agent():
 
             curr_state_q_val = self.get_curr_state_q_val(states, actions)
             next_state_q_val = self.get_next_state_q_val(next_states)
-            expected_q_val = rewards + (self.gamma * next_state_q_val * mask_not_ending_states)
+            target_q_val = rewards + (self.gamma * next_state_q_val * mask_not_ending_states)
 
-            loss = self.optimize_policy_net(curr_state_q_val, expected_q_val)
+            loss = self.optimize_policy_net(curr_state_q_val, target_q_val)
 
             return loss.detach().item()
         return 0
@@ -96,3 +95,16 @@ class DQN_Agent():
         loss = f['loss']
 
         return episode, loss
+
+class EpsGreedyStrategy():
+    def __init__(self, eps, eps_min, eps_decay):
+        self.eps = eps
+        self.eps_min = eps_min
+        self.eps_decay = eps_decay
+
+    def update_exploration_rate(self):
+        self.eps = max(self.eps_min, self.eps * self.eps_decay)
+        return self.eps
+
+    def get_exploration_rate(self):
+        return self.eps

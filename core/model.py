@@ -41,15 +41,3 @@ class ReplayMemory():
         return len(self.memory) >= batch_size
 
 
-class EpsGreedyStrategy():
-    def __init__(self, eps, eps_min, eps_decay):
-        self.eps = eps
-        self.eps_min = eps_min
-        self.eps_decay = eps_decay
-
-    def update_exploration_rate(self):
-        self.eps = max(self.eps_min, self.eps * self.eps_decay)
-        return self.eps
-
-    def get_exploration_rate(self):
-        return self.eps
