@@ -78,6 +78,7 @@ def main():
 
         elif choice == '4':
             #plt_compare = True
+
             print('\nTerminating....\n')
             break
 
