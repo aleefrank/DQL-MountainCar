@@ -13,7 +13,7 @@ def main():
     load_npy = False
     plt_compare = False
 
-    print("\n\n* * *    W E L C O M E   T O   M O U N T A I N   C A R   D Q N    * * *\n\n")
+    print("\n\n* * *    W E L C O M E   T O   D Q L - M O U N T A I N   C A R    * * *\n\n")
     while True:
         choice = input(
             "Do you want to Train or Test the Network?\n[1] - Train\n[2] - Test\n[3] - Plot Results\n\n[4] - Terminate\n")
