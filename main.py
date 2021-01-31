@@ -93,7 +93,7 @@ def main():
             plot(x1=num_episodes,
                  y1=[plt_all_episodes_rewards.tolist(), plt_avg_last_100_rewards.tolist(), plt_win_th.tolist()], \
                  l1=['Episodes Reward', 'Avarage Score', 'Winning Condition'], x1_label='Episode', y1_label='Score', \
-                 path='./figures', name=mode + '_Agent',
+                 path='./imgs', name=mode + '_Agent',
                  save=True)
 
         if plt_compare:
@@ -117,7 +117,7 @@ def main():
             plot(x1=num_episodes, y1=[plt_avg100_dqn, plt_avg100_fqtdqn, plt_avg100_ddqn, plt_win_th], \
                  l1=['DQN Agent', 'FQTDQN Agent', 'DDQN Agent', 'Winning Condition'], x1_label='Episode',
                  y1_label='Avarage Score', \
-                 path='./figures', name='Results',
+                 path='./imgs', name='Results',
                  save=True, colors=['tab:blue', 'tab:green', 'tab:orange', 'tab:red'])
 
 

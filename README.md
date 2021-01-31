@@ -5,7 +5,7 @@ Project work for "Autonomous and Adaptive Systems" (held by Prof. Mirco Musolesi
 The goal of this project is to compare, from a performance point of view, three different implementations of one of the most common reinforcement learning algorithms: Deep Q-Learning. In particular, DQN, DQN with Fixed Q-targets, and Double-DQN were chosen. The comparison was made using the same hyperparameters. The results showed that although all three implementations solved the environment under consideration, the two optimizations of the base algorithm led to better results.
 
 The agents have been compared on the MountainCar-v0 OpenAI-Gym environment:
-![alt text](figures/mountaincar.gif)
+![alt text](imgs/mountaincar.gif)
 
 ## Dependencies
 - PyTorch

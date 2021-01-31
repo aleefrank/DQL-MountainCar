@@ -66,7 +66,7 @@ def test(mode, name, parameters_path, plt_results=False):
         plot(x1=num_episodes,
              y1=[scores, mean_score, game_lost], \
              l1=['Score', 'Avarage Score', 'Defeat Threshold'], x1_label='Episode', y1_label='Score', \
-             path='./figures', name=mode + name + '_Agent_test',
+             path='./imgs', name=mode + name + '_Agent_test',
              save=True, colors=['tab:blue', 'tab:orange', 'tab:red'])
 
     return
