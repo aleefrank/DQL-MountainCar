@@ -23,7 +23,7 @@ def save_logs(path, mode, timestamp, list):
 def train(mode, parameters_path, logs_path, npy_path=None, plt_path=None, load=None):
     # Chosen environment
     env = gym.make('MountainCar-v0')
-    num_states = len(env.observation_space.sample())
+    in_features = len(env.observation_space.sample())
     num_actions = env.action_space.n
 
     # FOR PLOTTING
@@ -47,12 +47,12 @@ def train(mode, parameters_path, logs_path, npy_path=None, plt_path=None, load=N
     log_every = 500
 
     if mode == 'DQN':
-        agent = DQN_Agent(num_actions=num_actions, num_states=num_states,
+        agent = DQN_Agent(num_actions=num_actions, in_features=in_features,
                           epsilon=eps_start, eps_min=eps_end, eps_decay=eps_decay,
                           gamma=gamma, learning_rate=learning_rate,
                           batch_size=batch_size, memory_size=memory_size)
     elif mode == 'FQTDQN':
-        agent = FQTDQN_Agent(num_actions=num_actions, num_states=num_states,
+        agent = FQTDQN_Agent(num_actions=num_actions, in_features=in_features,
                              epsilon=eps_start, eps_min=eps_end, eps_decay=eps_decay,
                              gamma=gamma, learning_rate=learning_rate,
                              batch_size=batch_size, memory_size=memory_size)
@@ -60,7 +60,7 @@ def train(mode, parameters_path, logs_path, npy_path=None, plt_path=None, load=N
         agent.target_net.load_state_dict(agent.policy_net.state_dict())
         agent.target_net.eval()
     elif mode == 'DDQN':
-        agent = DDQN_Agent(num_actions=num_actions, num_states=num_states,
+        agent = DDQN_Agent(num_actions=num_actions, in_features=in_features,
                            epsilon=eps_start, eps_min=eps_end, eps_decay=eps_decay,
                            gamma=gamma, learning_rate=learning_rate,
                            batch_size=batch_size, memory_size=memory_size)

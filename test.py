@@ -7,7 +7,7 @@ from core.utils.utils import *
 def test(mode, name, parameters_path, plt_results=False):
     # Chosen environment
     env = gym.make('MountainCar-v0')
-    num_states = len(env.observation_space.sample())
+    in_features = len(env.observation_space.sample())
     num_actions = env.action_space.n
 
     try:
@@ -19,7 +19,7 @@ def test(mode, name, parameters_path, plt_results=False):
         raise
     try:
         f = torch.load(best_param)
-        test_net = DQN(num_states=num_states, num_actions=num_actions)
+        test_net = DQN(in_features=in_features, num_actions=num_actions)
         test_net.load_state_dict(f['policy_net_state_dict'])
         test_net.eval()
     except OSError:
@@ -37,13 +37,13 @@ def test(mode, name, parameters_path, plt_results=False):
             state = env.reset()
             episode_reward = 0
             for step in range(200):
+                #env.render()
                 if not isinstance(state, torch.Tensor):
                     state = torch.tensor([state])
                 action = test_net(state).argmax(dim=1)
 
                 next_state, reward, done, _ = env.step(action.item())
                 episode_reward += reward
-                # env.render()
                 state = next_state
                 if done:
                     scores.append(episode_reward)
@@ -54,6 +54,7 @@ def test(mode, name, parameters_path, plt_results=False):
                         print(episode_reward)
                         print('Episode {}: Goal not achieved.'.format(episode))
                     break
+        env.close()
     except:
         print('\nSomething occurred during Testing..')
 

@@ -9,14 +9,14 @@ from core.model import DQN
 from core.utils.utils import transpose
 
 class DQN_Agent():
-    def __init__(self, num_actions, num_states, \
+    def __init__(self, num_actions, in_features, \
                  epsilon, eps_min, eps_decay, \
                  gamma, learning_rate, \
                  batch_size, memory_size):
 
         self.name = 'DQN'
         self.num_actions = num_actions
-        self.num_states = num_states
+        self.in_features = in_features
 
         self.strategy = EpsGreedyStrategy(epsilon, eps_min, eps_decay)
 
@@ -26,7 +26,7 @@ class DQN_Agent():
         self.batch_size = batch_size
         self.replay_memory = ReplayMemory(memory_size)
 
-        self.policy_net = DQN(num_states=num_states, num_actions=num_actions)
+        self.policy_net = DQN(in_features=in_features, num_actions=num_actions)
         self.optimizer = optim.Adam(params=self.policy_net.parameters(), lr=learning_rate)
 
     def get_agent_name(self):
