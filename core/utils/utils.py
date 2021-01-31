@@ -87,7 +87,7 @@ def save_np(x, path, timestamp, name):
     np.save(path + '/' + timestamp + '_' + name + '.npy', x)
 
 
-# Credits for this representation with namedtuple: https://deeplizard.com/learn/video/PyQNfsGUnQA
+# Credits for this representation with namedtuple: https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
 Experience = namedtuple(
     'Experience',
     ('state', 'action', 'reward', 'next_state', 'done')
@@ -95,14 +95,14 @@ Experience = namedtuple(
 
 
 # Converts batch of Experiences to Experience of batches
-# Credits : https://deeplizard.com/learn/video/ewRw996uevM
-def extract_tensors(experiences):
+# Credits : https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
+def transpose(experiences):
     batch = Experience(*zip(*experiences))
 
-    t1 = torch.cat(batch.state)
-    t2 = torch.cat(batch.action)
-    t3 = torch.cat(batch.reward)
-    t4 = torch.cat(batch.next_state)
-    t5 = torch.cat(batch.done)
+    state_batch = torch.cat(batch.state)
+    action_batch = torch.cat(batch.action)
+    reward_batch = torch.cat(batch.reward)
+    next_state_batch = torch.cat(batch.next_state)
+    done_batch = torch.cat(batch.done)
 
-    return (t1, t2, t3, t4, t5)
+    return (state_batch, action_batch, reward_batch, next_state_batch, done_batch)

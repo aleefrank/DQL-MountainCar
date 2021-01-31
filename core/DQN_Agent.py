@@ -4,8 +4,9 @@ import torch.optim as optim
 import torch.nn.functional as F
 import numpy as np
 
-from core.model import ReplayMemory, DQN
-from core.utils.utils import extract_tensors
+from core.memory import ReplayMemory
+from core.model import DQN
+from core.utils.utils import transpose
 
 class DQN_Agent():
     def __init__(self, num_actions, num_states, \
@@ -31,7 +32,7 @@ class DQN_Agent():
     def get_agent_name(self):
         return self.name
 
-    # explore or exploit based on eps
+
     def get_action(self, state, epsilon):
         if not isinstance(state, torch.Tensor):
             state = torch.tensor([state])
@@ -53,10 +54,10 @@ class DQN_Agent():
     def memory_sample(self, batch_size):
         return self.replay_memory.sample(batch_size)
 
-    def perform_exp_replay(self):
+    def learn(self):
         if self.memory_can_provide_sample(self.batch_size):
-            batches = self.memory_sample(self.batch_size)
-            states, actions, rewards, next_states, dones = extract_tensors(batches)
+            experiences = self.memory_sample(self.batch_size)
+            states, actions, rewards, next_states, dones = transpose(experiences)
             mask_not_ending_states = (dones.type(torch.bool) == False)
 
             curr_state_q_val = self.get_curr_state_q_val(states, actions)
@@ -74,27 +75,12 @@ class DQN_Agent():
     def get_next_state_q_val(self, next_states):
         return self.policy_net(next_states).max(dim=1)[0].detach()
 
-    def optimize_policy_net(self, curr, exp):
-        loss = F.mse_loss(curr, exp)
+    def optimize_policy_net(self, curr, target):
+        loss = F.mse_loss(curr, target)
         self.optimizer.zero_grad()
         loss.backward()
         self.optimizer.step()
         return loss
-
-    # used in case of training interruption or test
-    def load_parameters(self, file):
-        f = torch.load(file)
-        self.policy_net.load_state_dict(f['policy_net_state_dict'])
-        self.get_target_net().load_state_dict(f['target_net_state_dict'])
-        self.optimizer.load_state_dict(f['optimizer_state_dict'])
-        self.policy_net.train()
-        self.target_net.eval()
-
-        # just for printing them out if interrupted
-        episode = f['episode']
-        loss = f['loss']
-
-        return episode, loss
 
 class EpsGreedyStrategy():
     def __init__(self, eps, eps_min, eps_decay):

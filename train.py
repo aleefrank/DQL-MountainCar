@@ -29,25 +29,22 @@ def train(mode, parameters_path, logs_path, npy_path=None, plt_path=None, load=N
     # FOR PLOTTING
     plt_avg_last_100_rewards = []
     plt_epsilon = []
-    plt_all_episodes_rewards = []
-    plt_all_timesteps_loss = []
-    plt_win_th = []
 
     # HYPERPARAMETERS
     batch_size = 128
     gamma = 0.999
     eps_start = 1
     eps_end = 0.01
-    eps_decay = 0.99
+    eps_decay = 0.9
 
     target_update = 20
     memory_size = 300000
     learning_rate = 0.001
-    num_episodes = 5000
+    num_episodes = 500
 
     # UTILS
     save_weight_th = -110
-    log_every = 500
+    log_every = 100
 
     if mode == 'DQN':
         agent = DQN_Agent(num_actions=num_actions, num_states=num_states,
@@ -71,20 +68,6 @@ def train(mode, parameters_path, logs_path, npy_path=None, plt_path=None, load=N
         agent.target_net.load_state_dict(agent.policy_net.state_dict())
         agent.target_net.eval()
 
-    episode = 0
-    loss = None
-
-    # if training interrupted
-    Path(parameters_path + mode).mkdir(parents=True, exist_ok=True)
-    if load:
-        list_of_files = glob.glob(parameters_path + mode + '/*')
-        latest_file = max(list_of_files, key=os.parameters_path.getctime)
-        try:
-            episode, loss = agent.load_parameters(latest_file)
-        except OSError:
-            print("file not found")
-            raise
-    print("Starting from episode: {}".format(episode))
 
     # START TRAINING
     all_timesteps_loss = []
@@ -95,7 +78,7 @@ def train(mode, parameters_path, logs_path, npy_path=None, plt_path=None, load=N
     tot_timesteps = 0
     timestamp = dt.now().strftime("%d%m%Y-%H%M%S")
 
-    for episode in range(episode + 1, num_episodes + 1):
+    for episode in range(1, num_episodes + 1):
         render = False
 
         if episode % log_every == 0:
@@ -133,7 +116,7 @@ def train(mode, parameters_path, logs_path, npy_path=None, plt_path=None, load=N
 
             state = next_state
 
-            loss = agent.perform_exp_replay()
+            loss = agent.learn()
             all_timesteps_loss.append(loss)
 
             if step % target_update == 0 and (isinstance(agent, FQTDQN_Agent) or isinstance(agent, DDQN_Agent)):
@@ -168,7 +151,6 @@ def train(mode, parameters_path, logs_path, npy_path=None, plt_path=None, load=N
                 torch.save({
                     'episode': episode,
                     'policy_net_state_dict': agent.policy_net.state_dict(),
-                    'target_net_state_dict': agent.target_net.state_dict(),
                     'optimizer_state_dict': agent.optimizer.state_dict(),
                     'loss': loss,
                 },

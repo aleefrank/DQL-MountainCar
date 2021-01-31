@@ -11,20 +11,19 @@ def test(mode, name, parameters_path, plt_results=False):
     num_actions = env.action_space.n
 
     try:
-        list_of_files = glob.glob(parameters_path + '/' + mode + '/*')
+        files = glob.glob(parameters_path + '/' + mode + '/*')
         # latest file contains the best parameters
-        latest_file = max(list_of_files)
-        #print(latest_file)
+        best_param = max(files)
     except ValueError:
         print("Couldn't find parameters file in path {}".format(parameters_path + '/' + mode + '/'))
         raise
     try:
-        f = torch.load(latest_file)
+        f = torch.load(best_param)
         test_net = DQN(num_states=num_states, num_actions=num_actions)
         test_net.load_state_dict(f['policy_net_state_dict'])
         test_net.eval()
     except OSError:
-        print("File not found")
+        print("File not found.")
         raise
 
     try:

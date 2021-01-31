@@ -13,10 +13,10 @@ def main():
     load_npy = False
     plt_compare = False
 
-    print("\n\n* * *    W E L C O M E   T O   M O U N T A I N  C A R   D Q N    * * *\n\n")
+    print("\n\n* * *    W E L C O M E   T O   M O U N T A I N   C A R   D Q N    * * *\n\n")
     while True:
         choice = input(
-            "Do you want to Train or Test the Network?\n[1] - Train\n[2] - Test\n[3] - Plot Results\n[4] - Compare Plots\n")
+            "Do you want to Train or Test the Network?\n[1] - Train\n[2] - Test\n[3] - Plot Results\n\n[4] - Terminate\n")
 
         if choice not in ['1', '2', '3', '4']:
             print("Option [{}] not allowed.\nAllowed options: [1] - [2]\nTry again...".format(choice))
@@ -74,17 +74,22 @@ def main():
             elif mode_choice == '3':
                 mode = "DDQN"
             load_npy = True
+            filename = input('Insert the identifier of the file you want to plot the results (format: DDMMYYYY-hhmmss_[decay=*]):')
 
         elif choice == '4':
-            plt_compare = True
+            #plt_compare = True
+            print('\nTerminating....\n')
+            break
 
         if load_npy:
-            starts_with = mode + '/19012021-133444_[decay=0.99]_'
-            num_episodes = np.load(npy_path + starts_with + 'episodes.npy')
-            plt_all_episodes_rewards = np.load(npy_path + starts_with + 'ep_rewards.npy')
-            plt_avg_last_100_rewards = np.load(npy_path + starts_with + 'avg100.npy')
-            plt_win_th = np.load(npy_path + starts_with + 'win_th.npy')
-
+            starts_with = mode + '/' + filename
+            try:
+                num_episodes = np.load(npy_path + starts_with + '_episodes.npy')
+                plt_all_episodes_rewards = np.load(npy_path + starts_with + '_ep_rewards.npy')
+                plt_avg_last_100_rewards = np.load(npy_path + starts_with + '_avg100.npy')
+                plt_win_th = np.load(npy_path + starts_with + '_win_th.npy')
+            except FileNotFoundError:
+                print("file not found.")
             plot(x1=num_episodes,
                  y1=[plt_all_episodes_rewards.tolist(), plt_avg_last_100_rewards.tolist(), plt_win_th.tolist()], \
                  l1=['Episodes Reward', 'Avarage Score', 'Winning Condition'], x1_label='Episode', y1_label='Score', \
@@ -92,6 +97,14 @@ def main():
                  save=True)
 
         if plt_compare:
+            #Path(parameters_path + mode).mkdir(parents=True, exist_ok=True)
+            #if load:
+            #    list_of_files = glob.glob(parameters_path + mode + '/*')
+            #    latest_file = max(list_of_files, key=os.parameters_path.getctime)
+            #    try:
+            #    except OSError:
+            #        print("file not found")
+            #        raise
             dqn_starts_with = 'DQN/19012021-110922_[decay=0.99]_'
             fqtdqn_starts_with = 'FQTDQN/18012021-190116_[decay=0.99]_'
             ddqn_starts_with = 'DDQN/19012021-190116_[decay=0.99]_'
