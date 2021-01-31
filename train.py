@@ -40,7 +40,7 @@ def train(mode, parameters_path, logs_path, npy_path=None, plt_path=None, load=N
     target_update = 20
     memory_size = 300000
     learning_rate = 0.001
-    num_episodes = 1000
+    num_episodes = 5000
 
     # UTILS
     save_weight_th = -110
