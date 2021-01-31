@@ -17,7 +17,7 @@ The agents have been compared on the MountainCar-v0 OpenAI-Gym environment:
 ## Installation
 Clone this repository:
 ```
-git clone https://github.com/aleefrank/DQL_MountainCar.git
+git clone https://github.com/aleefrank/DQL-MountainCar.git
 ```
 Move to the project's root folder DQL-MountainCar and run:
 ```
