@@ -35,16 +35,16 @@ def train(mode, parameters_path, logs_path, npy_path=None, plt_path=None, load=N
     gamma = 0.999
     eps_start = 1
     eps_end = 0.01
-    eps_decay = 0.9
+    eps_decay = 0.99
 
     target_update = 20
     memory_size = 300000
     learning_rate = 0.001
-    num_episodes = 500
+    num_episodes = 1000
 
     # UTILS
     save_weight_th = -110
-    log_every = 100
+    log_every = 500
 
     if mode == 'DQN':
         agent = DQN_Agent(num_actions=num_actions, num_states=num_states,

@@ -4,9 +4,9 @@ import torch.nn.functional as F
 
 class DQN(nn.Module):
 
-    def __init__(self, num_states, num_actions):
+    def __init__(self, in_features, num_actions):
         super().__init__()
-        self.fc1 = nn.Linear(in_features=num_states, out_features=24)
+        self.fc1 = nn.Linear(in_features=in_features, out_features=24)
         self.fc2 = nn.Linear(in_features=24, out_features=48)
         self.out = nn.Linear(in_features=48, out_features=num_actions)  # move left/right/stay
 
