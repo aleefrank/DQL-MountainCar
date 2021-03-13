@@ -7,7 +7,7 @@ The goal of this project is to compare, from a performance point of view, three 
 The agents have been compared on the MountainCar-v0 OpenAI-Gym environment:
 ![alt text](imgs/mountaincar.gif)
 
-For a detailed report, consult [this mini paper](/Paper_MountainCar_DQN_FQTDQN_DDQN.pdf).
+For a detailed explaination, consult [this mini paper](/Paper_MountainCar_DQN_FQTDQN_DDQN.pdf).
 ## Dependencies
 - PyTorch
 - OpenAI gym
